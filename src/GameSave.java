@@ -7,6 +7,4 @@ public class GameSave implements Serializable {
     private static final String STONES_FILE = System.getProperty("user.home") + System.getProperty("file.separator") + "minesweeper.settings";
 
 
-
-
 }
