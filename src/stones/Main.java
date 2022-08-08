@@ -1,3 +1,9 @@
+package stones;
+
+
+import stones.consoleui.ConsoleUI;
+import stones.core.Field;
+
 public class Main {
 
     private long startMillis;
@@ -12,8 +18,8 @@ public class Main {
 
     private Main() {
         instance = this;
-        Field field = new Field(3, 3);
-        Console console = new Console();
+       Field field=new Field(3,3);
+        ConsoleUI console = new ConsoleUI();
         console.start(field);
 
     }

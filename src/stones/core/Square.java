@@ -1,3 +1,5 @@
+package stones.core;
+
 public class Square {
     private int value;
     private int positionX;

@@ -1,11 +1,21 @@
+package stones.consoleui;
+
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.util.Date;
 import java.util.Random;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
+import stones.core.Field;
+import stones.Main;
+import stones.core.GameState;
+import stones.entity.Score;
+import stones.services.GameStudioException;
 
-public class Console {
+public class ConsoleUI {
+  private   String userName ;
+ private int nrOfMoves;
     private Field field;
 
 
@@ -13,6 +23,8 @@ public class Console {
         this.field = field;
         makeChaos(this.field);
         Main.getInstance().setStartMillis(System.currentTimeMillis());
+        System.out.println("Zadajte meno hraca: ");
+        userName=read();
         do {
             System.out.println("Hrajes " + Main.getInstance().getPlayingSeconds() + " sekund");
             update();
@@ -72,18 +84,22 @@ public class Console {
                 case 0:
                     myCommand = "U";
                     this.field.moveSquare(myCommand);
+                    nrOfMoves++;
                     break;
                 case 1:
                     myCommand = "D";
                     this.field.moveSquare(myCommand);
+                    nrOfMoves++;
                     break;
                 case 2:
                     myCommand = "L";
                     this.field.moveSquare(myCommand);
+                    nrOfMoves++;
                     break;
                 case 3:
                     myCommand = "R";
                     this.field.moveSquare(myCommand);
+                    nrOfMoves++;
                     break;
             }
         }
@@ -106,6 +122,19 @@ public class Console {
             throw new MyException("Nespravny vstup na pohyb pouzite tlacitka u d l r");
         }
     }
+    public void finalOperation(GameState gameState){
+
+
+        Score score=new Score("stones", userName,0,new Date());
+        String myEndOfGameString="";
+        if(gameState==GameState.FAILED){
+            myEndOfGameString="Prehral si, tvoje skore je 0, mozes nechat comment: ";
+        }
+        if(gameState==GameState.SOLVED){
+            int myPoints=(Integer)Main.getInstance().getPlayingSeconds();
+            myEndOfGameString="Vyhral si si, tvoje skore je 0, mozes nechat comment: ";}
+
+
+    }
 
 }
-

@@ -1,3 +1,4 @@
+package stones.core;
 
 public enum GameState {
     /**
